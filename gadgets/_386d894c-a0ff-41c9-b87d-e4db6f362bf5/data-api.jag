@@ -1,0 +1,20 @@
+<%
+function getChartData() {
+   var connectionData = JSON.parse('{"Connection" : "WSO2_CON", "undefined" : ""}');
+   var queryData = JSON.parse('{"SQL Statement" : "SELECT tbl_iot_zone.name ,count(`rfid`) FROM wso2con_indikas_com.tbl_iot_user_checkin inner join wso2con_indikas_com.tbl_iot_zone on tbl_iot_zone.id = tbl_iot_user_checkin.zoneId group by `zoneId`  order by name"}');
+   var dataColumns = JSON.parse('["X-Axis", "Y-Axis"]');
+   var mapping = JSON.parse('[{"Series Label" : "Attendance", "X-Axis" : "name", "Y-Axis" : "count(`rfid`)"}]');
+   var timeSeries = JSON.parse('false');
+   var dataLabels = JSON.parse('{"X-Axis Label" : "Zone Name", "Y-Axis Label" : "Attendance"}');
+   
+   var dbHandler = require('/gadgets/_386d894c-a0ff-41c9-b87d-e4db6f362bf5/modules/db-handlers/rdbms-handler.js');
+   var dbResult = dbHandler.getData(connectionData,queryData);
+   
+   var dataProcessor = require('/gadgets/_386d894c-a0ff-41c9-b87d-e4db6f362bf5/modules/flot-charts/default-chart.js'); 
+   var processedData = dataProcessor.processData(dbResult,mapping,dataColumns,dataLabels,timeSeries); 
+   
+ return processedData;
+}
+  
+print(getChartData());
+%>

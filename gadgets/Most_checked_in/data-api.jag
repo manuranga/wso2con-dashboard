@@ -1,0 +1,13 @@
+<%
+function getChartData() {
+   var connectionData = JSON.parse('{"Connection" : "WSO2_CON", "undefined" : ""}');
+   var queryData = {"SQL Statement" : 'SELECT concat(firstName," ",lastName," (",tbl_user_rfid_tag.email,")") as user,count(tbl_user_rfid_tag.email) as count FROM tbl_iot_user_checkin inner join tbl_user_rfid_tag on tbl_iot_user_checkin.rfid = tbl_user_rfid_tag.rfid inner join tbl_user on tbl_user.email=tbl_user_rfid_tag.email group by tbl_user_rfid_tag.email order by count DESC, user'};
+   
+   var dbHandler = require('/gadgets/Most_checked_in/modules/db-handlers/rdbms-handler.js');
+   var dbResult = dbHandler.getData(connectionData,queryData);
+   
+ return dbResult;
+}
+  
+print(getChartData());
+%>

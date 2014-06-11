@@ -1,0 +1,20 @@
+<%
+function getChartData() {
+   var connectionData = JSON.parse('{"Connection" : "WSO2_CON", "undefined" : ""}');
+   var queryData = JSON.parse('{"SQL Statement" : "SELECT name,count(rfid) as count FROM tbl_iot_user_latest_checkin inner join tbl_iot_zone on tbl_iot_zone.id = tbl_iot_user_latest_checkin.zoneId group by zoneId  order by count"}');
+   var dataColumns = JSON.parse('["Data"]');
+   var mapping = JSON.parse('[{"Series Label" : "", "Data" : "count"}]');
+   var timeSeries = JSON.parse('false');
+   var dataLabels = JSON.parse('{"Data Label" : ""}');
+   
+   var dbHandler = require('/gadgets/PieChart/modules/db-handlers/rdbms-handler.js');
+   var dbResult = dbHandler.getData(connectionData,queryData);
+   
+   var dataProcessor = require('/gadgets/PieChart/modules/flot-charts/pie-chart.js'); 
+   var processedData = dataProcessor.processData(dbResult,mapping,dataColumns,dataLabels,timeSeries); 
+   
+ return processedData;
+}
+  
+print(getChartData());
+%>
