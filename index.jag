@@ -351,7 +351,7 @@ href="img/apple-touch-icon-72-precomposed.png">
 
                         <li class="layout_block " data-sizey="2" data-sizex="2"
                         data-col="1" data-row="1"
-                        data-url="http://localhost:9763/dash1/gadgets/PieChart/public/pie-chart/pie-chart.xml" data-wid="531" data-prefs="{&#x27;dataSource&#x27;:&#x27;/dash1/gadgets/PieChart/data-api.jag&#x27;,&#x27;updateGraph&#x27;:&#x27;5&#x27;}" data-title="Most Check-ins Now">
+                        data-url="http://localhost:9763/dash1/gadgets/PieChart/public/pie-chart/pie-chart.xml" data-wid="531" data-prefs="{&#x27;dataSource&#x27;:&#x27;/dash1/gadgets/PieChart/data-api.jag&#x27;,&#x27;updateGraph&#x27;:&#x27;5&#x27;}" data-title="Current Check-ins">
                         <div class="grid_header">
                             <div id="header_label"><h3></h3></div>
                             <div id="gadget_title_div"><input class="gadget-title-txt"></div>
